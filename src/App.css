@@ -1,22 +1,31 @@
-.App {
+.menu {
   text-align: center;
+  margin: 15px;
 }
 
-.App-logo {
-  height: 40vmin;
+.menu-button {
+  width: 200px;
+  margin: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.bpmn-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  min-height: 350px;
 }
 
-.App-link {
-  color: #09d3ac;
+.bpmn-viewer {
+  overflow: auto;
+  flex-direction: column;
+  min-width: 300px;
+  width: 70%;
+  background-color: aquamarine;
+}
+
+.bpmn-panel {
+  overflow: auto;
+  flex-direction: column;
+  min-width: 300px;
+  width: 30%;
+  background-color: blue;
 }
