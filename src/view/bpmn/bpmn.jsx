@@ -26,7 +26,10 @@ export default class Bpmn extends Component {
     this.bpmnModeler = new BpmnModeler();
 
     // comments
-    
+
+    // this is new text
+    // and more new text
+
     /*
     this.bpmnModeler = new BpmnModeler({
       container: '#canvas',
