@@ -24,6 +24,9 @@ export default class Bpmn extends Component {
 
   componentDidMount() {
     this.bpmnModeler = new BpmnModeler();
+
+    // comments
+    
     /*
     this.bpmnModeler = new BpmnModeler({
       container: '#canvas',
