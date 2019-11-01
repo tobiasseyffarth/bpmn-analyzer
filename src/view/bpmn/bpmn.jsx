@@ -26,8 +26,6 @@ export default class Bpmn extends Component {
     this.bpmnModeler = new BpmnModeler();
 
     // comments
-
-    // new comment
     
     /*
     this.bpmnModeler = new BpmnModeler({
