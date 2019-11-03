@@ -48,12 +48,29 @@ export default class Menu extends Component {
     return (
       <div>
         <div className="menu">
-          <Button className="menu-button" style={{ marginRight: 10 }} label="Open Bpmn" onClick={this.openBpmn} />
-          <Button label="Show Graph" className="menu-button" style={{ marginRight: 10 }} onClick={this.showGraph} />
-          <Button label="View Bpmn in console" className="menu-button" style={{ marginRight: 10 }} onClick={this.logBpmn} />
+          <Button
+            className="menu-button"
+            style={{ marginRight: 10 }} 
+            label="Open Bpmn" 
+            onClick={this.openBpmn}
+            tooltip="Open BPMN file and render it."
+          />
+          <Button
+            label="Show Graph" 
+            className="menu-button"
+            style={{ marginRight: 10 }} 
+            onClick={this.showGraph}
+          />
+          <Button
+            label="View Bpmn in console" 
+            className="menu-button" 
+            style={{ marginRight: 10 }} 
+            onClick={this.logBpmn} 
+            tooltip="Prints the process object in the console."
+          />
         </div>
         <Bpmn
-          bpmnXml={this.state.bpmnXml}
+          bpmnXml={ this.state.bpmnXml }
         />
       </div>
     );

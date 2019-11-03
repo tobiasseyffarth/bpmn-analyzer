@@ -11,7 +11,7 @@
 .bpmn-container {
   display: flex;
   flex-direction: row;
-  min-height: 350px;
+  min-height: 500px;
 }
 
 .bpmn-viewer {
@@ -20,6 +20,7 @@
   min-width: 300px;
   width: 70%;
   background-color: aquamarine;
+  padding: 10px;
 }
 
 .bpmn-panel {
@@ -28,4 +29,9 @@
   min-width: 300px;
   width: 30%;
   background-color: blue;
+  padding: 10px;
+}
+
+.djs-bendpoints {
+  display: none;
 }
