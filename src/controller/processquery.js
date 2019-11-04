@@ -6,7 +6,7 @@ export function getSuccessor(businessObject) {
 
 }
 
-export function getDatainput(businessObject) {
+export function getDataInput(businessObject) {
 
 }
 

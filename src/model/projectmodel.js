@@ -4,7 +4,7 @@ class ProjectModel {
         this.graph = null;
     }
 
-    setBpmn(bpmn) {
+    setBpmn = (bpmn) => {
         this.bpmn = bpmn;
     }
 

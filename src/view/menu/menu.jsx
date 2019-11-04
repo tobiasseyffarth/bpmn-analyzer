@@ -25,23 +25,25 @@ export default class Menu extends Component {
   }
 
   async openBpmn() {
-    const file = await FileIO.getFile();
+    const file = await FileIO.getFile('.bpmn');
     const input = await FileIO.readFile(file);
-    this.setState({ bpmnXml: input }, () => {
-      // console.log(this.state.bpmnXml);
-    });
+    this.setState({ bpmnXml: input });
   }
 
   showGraph() {
-    Projectmodel.setGraph('neues graph');
+    Projectmodel.setGraph('neuer graph');
     console.log(Projectmodel.getGraph());
   }
 
   logBpmn() {
-    Projectmodel.setBpmn('neues BPMN');
-    console.log(Projectmodel.getBpmn());
-    let i = 5;
-    console.log(i);
+    console.clear();
+    const bpmn = Projectmodel.getBpmn();
+
+    if (bpmn !== null || bpmn !== undefined) {
+      console.log(bpmn);
+    } else {
+      console.log('no bpmn model available');
+    }
   }
 
   render() {

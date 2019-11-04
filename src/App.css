@@ -18,8 +18,7 @@
   overflow: auto;
   flex-direction: column;
   min-width: 300px;
-  width: 70%;
-  background-color: aquamarine;
+  width: 100%;
   padding: 10px;
 }
 
@@ -27,9 +26,11 @@
   overflow: auto;
   flex-direction: column;
   min-width: 300px;
-  width: 30%;
-  background-color: blue;
   padding: 10px;
+}
+
+.bpmn-properties {
+  padding-bottom: 10px;
 }
 
 .djs-bendpoints {
