@@ -52,7 +52,7 @@ export default class Bpmn extends Component {
   renderBpmn(xml) {
     console.log('render bpmn');
     let _this = this;
-    this.bpmnModeler.importXML(xml, function(err) {
+    this.bpmnModeler.importXML(xml, function (err) {
       if (err) {
         console.log('error rendering', err);
       } else {
@@ -71,25 +71,19 @@ export default class Bpmn extends Component {
     const businessObject = element.businessObject;
     const type = element.type.toLowerCase();
 
-    this.setState({elementId: businessObject.id});
-    this.setState({elementName: businessObject.name});
-    this.setState({elementType: type});
+    this.setState({ elementId: businessObject.id });
+    this.setState({ elementName: businessObject.name });
+    this.setState({ elementType: type });
 
-    if (type.includes('task')) {
-      console.log('contains task');
-      const pred = processQuery.getPredecessor(businessObject);
-      const suc = processQuery.getSuccessor(businessObject);
-      const dataInput = processQuery.getDataInput(businessObject);
-      const dataOutput = processQuery.getDataOutput(businessObject);
+    const pred = processQuery.getPredecessor(businessObject);
+    const suc = processQuery.getSuccessor(businessObject);
+    const dataInput = processQuery.getDataInput(businessObject, this.bpmnModeler);
+    const dataOutput = processQuery.getDataOutput(businessObject, this.bpmnModeler);
 
-      console.clear();
-
-      console.log('pred', pred);
-      console.log('sucs', suc);
-      console.log('input', dataInput);
-      console.log('output', dataOutput);
-      
-    }
+    console.log('pred', pred);
+    console.log('sucs', suc);
+    console.log('input', dataInput);
+    console.log('output', dataOutput);      
 
     console.log(element);
   }
@@ -103,7 +97,7 @@ export default class Bpmn extends Component {
           </div>
           <div className="bpmn-properties">
             <label>Id: {this.state.elementId}</label>
-          </div> 
+          </div>
           <div className="bpmn-properties">
             <label>Type: {this.state.elementType}</label>
           </div>
