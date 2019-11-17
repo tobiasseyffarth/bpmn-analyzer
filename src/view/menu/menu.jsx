@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'primereact/button';
-import { InputText } from 'primereact/inputtext';
 import Bpmn from '../bpmn/bpmn';
 import * as FileIO from '../../controller/fileio';
 import Projectmodel from '../../model/projectmodel';
@@ -12,9 +11,7 @@ import 'primereact/resources/primereact.min.css';
 export default class Menu extends Component {
   constructor(props) {
     super(props);
-
     this.openBpmn = this.openBpmn.bind(this);
-
     this.state = {
       bpmnXml: null
     };
@@ -28,11 +25,6 @@ export default class Menu extends Component {
     const file = await FileIO.getFile('.bpmn');
     const input = await FileIO.readFile(file);
     this.setState({ bpmnXml: input });
-  }
-
-  showGraph() {
-    Projectmodel.setGraph('neuer graph');
-    console.log(Projectmodel.getGraph());
   }
 
   logBpmn() {
@@ -56,12 +48,6 @@ export default class Menu extends Component {
             label="Open Bpmn" 
             onClick={this.openBpmn}
             tooltip="Open BPMN file and render it."
-          />
-          <Button
-            label="Show Graph" 
-            className="menu-button"
-            style={{ marginRight: 10 }} 
-            onClick={this.showGraph}
           />
           <Button
             label="View Bpmn in console" 

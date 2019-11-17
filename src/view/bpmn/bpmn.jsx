@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'primereact/button';
+import { ListBox } from 'primereact/listbox';
 import BpmnModeler from 'bpmn-js/dist/bpmn-modeler.development';
 import * as processQuery from './../../controller/processquery';
 import Projectmodel from '../../model/projectmodel';
@@ -11,12 +11,17 @@ export default class Bpmn extends Component {
 
     this.click = this.click.bind(this);
     this.renderBpmnProps = this.renderBpmnProps.bind(this);
+    this.clearBpmnProps = this.clearBpmnProps.bind(this);
 
     this.state = {
       bpmnXml: null,
       elementId: null,
       elementType: null,
-      elementName: null
+      elementName: null,
+      preds: [],
+      sucs: [],
+      inputs: [],
+      outputs: [],
     };
   }
 
@@ -67,9 +72,24 @@ export default class Bpmn extends Component {
     console.log(this.state.bpmnXml);
   }
 
+  clearBpmnProps() {
+    this.setState( {
+      bpmnXml: null,
+      elementId: null,
+      elementType: null,
+      elementName: null,
+      preds: [],
+      sucs: [],
+      inputs: [],
+      outputs: [], }
+    );
+  }
+
   renderBpmnProps(element) {
     const businessObject = element.businessObject;
     const type = element.type.toLowerCase();
+
+    this.clearBpmnProps();
 
     this.setState({ elementId: businessObject.id });
     this.setState({ elementName: businessObject.name });
@@ -80,12 +100,77 @@ export default class Bpmn extends Component {
     const dataInput = processQuery.getDataInput(businessObject, this.bpmnModeler);
     const dataOutput = processQuery.getDataOutput(businessObject, this.bpmnModeler);
 
-    console.log('pred', pred);
-    console.log('sucs', suc);
-    console.log('input', dataInput);
-    console.log('output', dataOutput);      
+    // get Preds
+    if (pred !== null) {
+      let resultPreds = [];
+      pred.forEach(item => {
+        if (item.name !== undefined) {
+          resultPreds.push({ 'label': item.name });
+        } else {
+          resultPreds.push({ 'label': item.id });
+        }
+      });
 
-    console.log(element);
+      if (resultPreds !== null) {
+        this.setState({ preds: resultPreds });
+      } else {
+        this.setState({ preds: [] });
+      }
+    }
+
+    // get Sucs
+    if (suc !== null) {
+      let resultSucs = [];
+      suc.forEach(item => {
+        if (item.name !== undefined) {
+          resultSucs.push({ 'label': item.name });
+        } else {
+          resultSucs.push({ 'label': item.id });
+        }
+      });
+
+      if (resultSucs !== null) {
+        this.setState({ sucs: resultSucs });
+      } else {
+        this.setState({ sucs: [] });
+      }
+    }
+
+    //get input
+    if (dataInput !== null) {
+      let inputs = [];
+      dataInput.forEach(item => {
+        if (item.name !== undefined) {
+          inputs.push({ 'label': item.name });
+        } else {
+          inputs.push({ 'label': item.id });
+        }
+      });
+
+      if (inputs !== null) {
+        this.setState({ inputs: inputs });
+      } else {
+        this.setState({ inputs: [] });
+      }
+    }
+
+    //get output
+    if (dataOutput !== null) {
+      let outputs = [];
+      dataOutput.forEach(item => {
+        if (item.name !== undefined) {
+          outputs.push({ 'label': item.name });
+        } else {
+          outputs.push({ 'label': item.id });
+        }
+      });
+
+      if (outputs !== null) {
+        this.setState({ outputs: outputs });
+      } else {
+        this.setState({ outputs: [] });
+      }
+    }
   }
 
   renderBpmnPanel() {
@@ -101,13 +186,35 @@ export default class Bpmn extends Component {
           <div className="bpmn-properties">
             <label>Type: {this.state.elementType}</label>
           </div>
+          <div>
+            <label>Predecessor flow node</label>
+            <ListBox
+              style={{ width: '250px' }}
+              options={this.state.preds}
+            />
+          </div>
+          <div>
+            <label>Succesor flow node</label>
+            <ListBox
+              style={{ width: '250px' }}
+              options={this.state.sucs}
+            />
+          </div>
+          <div>
+            <label>Input elements</label>
+            <ListBox
+              style={{ width: '250px' }}
+              options={this.state.inputs}
+            />
+          </div>
+          <div>
+            <label>Output elements</label>
+            <ListBox
+              style={{ width: '250px' }}
+              options={this.state.outputs}
+            />
+          </div>
         </div>
-        <Button
-          label="Show Graph"
-          className="menu-button"
-          style={{ marginRight: 10 }}
-          onClick={this.click}
-        />
       </div>
     )
   }
