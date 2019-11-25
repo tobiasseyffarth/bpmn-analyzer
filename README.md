@@ -3,7 +3,7 @@
 This React based web app demonstrates how a BPMN process model can be analyzed.
 
 ### Background
-The web app was presented during a workshop for modelling BPMN process models held at the 36th JCNetworkdays in Würzburg, Germany. The presentation is available at [/ressource/presentation.pdf](/ressource/presentation.pdf) 
+The web app was presented during a workshop for modelling BPMN process models held at the 36th JCNetworkdays in Würzburg, Germany. The presentation is available at [/ressource](/ressource) 
 
 ### Features
 - Import BPMN process models
