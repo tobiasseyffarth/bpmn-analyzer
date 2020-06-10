@@ -21,6 +21,6 @@ class ProjectModel {
     }
 }
 
-const projectmodel = new ProjectModel();
+const Projectmodel = new ProjectModel();
 
-module.exports = projectmodel;
+module.exports = Projectmodel;
